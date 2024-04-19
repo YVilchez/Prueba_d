@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novagrafic</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: hsl(0, 8%, 69%);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      width: 200px;
+      position: fixed;
+      top: 5px; /* Altura del header */
+      bottom: 0;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav li {
+      padding: 10px;
+      cursor: pointer;
+    }
+    nav li.submenu {
+      position: relative;
+    }
+    nav ul.submenu-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #222;
+      z-index: 1;
+    }
+    nav ul.submenu-content li {
+      padding: 10px;
+    }
+    nav li.submenu:hover ul.submenu-content {
+      display: block;
+    }
+    .content {
+      margin-left: 220px; /* Ancho del menú lateral + espacio */
+      padding: 20px;
+    }
+    footer {
+      background-color: hsl(0, 3%, 75%);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    /* Estilos específicos */
+    h1 {
+      color: #000;
+    }
+    .box {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+    }
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NOVAGRAFIC</h1>
+  </header>
+  
+  <nav>
+    <ul>
+      <li onclick="loadContent('Inicio')">Inicio</li>
+      <li onclick="loadContent('Inventario')">Inventario</li>
+      <li onclick="loadContent('Cotizacion')">Cotización</li>
+      <li onclick="loadContent('Pedido')">Pedido</li>
+      <li class="submenu">
+        Seguridad
+        <ul class="submenu-content">
+          <li onclick="loadContent('Bitacora')">Bitácora</li>
+          <li onclick="loadContent('Roles')">Roles</li>
+          <li onclick="loadContent('Objetos')">Objetos</li>
+          <li onclick="loadContent('Error')">Error</li>
+          <li onclick="loadContent('Usuarios')">Usuarios</li>
+          <li onclick="loadContent('Permisos')">Permisos</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content" id="mainContent">
+    <h2>Bienvenido a NOVAGRAFIC</h2>
+    <p>Selecciona una opción del menú para ver el contenido correspondiente.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 NOVAGRAFIC - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    function loadContent(page) {
+      const contentElement = document.getElementById('mainContent');
+      let pageContent = '';
+
+      switch (page) {
+        case 'Inicio':
+          // Contenido de la página de Inicio
+          break;
+        case 'Inventario':
+          // Contenido de la página de Inventario
+          break;
+        case 'Cotizacion':
+          // Contenido de la página de Cotización
+          break;
+        case 'Pedido':
+          // Contenido de la página de Pedido
+          break;
+        case 'Bitacora':
+          pageContent = `
+            <div class="box">
+              <h3>Bitácora</h3>
+              <p>Contenido de la página de Bitácora...</p>
+            </div>
+          `;
+          break;
+        case 'Roles':
+          pageContent = `
+            <div class="box">
+              <h3>Roles</h3>
+              <p>Contenido de la página de Roles...</p>
+            </div>
+          `;
+          break;
+        case 'Objetos':
+          pageContent = `
+            <div class="box">
+              <h3>Objetos</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Objeto</th>
+                    <th>Descripción</th>
+                    <th>Tipo de objeto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Puedes agregar más filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>Computadora</td>
+                    <td>Equipo de cómputo para oficina</td>
+                    <td>Tecnología</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddObjectForm()">Agregar Nuevo Objeto</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Error':
+          pageContent = `
+            <div class="box">
+              <h3>Error</h3>
+              <p>Contenido de la página de Error...</p>
+            </div>
+          `;
+          break;
+        case 'Usuarios':
+          pageContent = `
+            <div class="box">
+              <h3>Usuarios</h3>
+              <p>Contenido de la página de Usuarios...</p>
+            </div>
+          `;
+          break;
+        case 'Permisos':
+          pageContent = `
+            <div class="box">
+              <h3>Permisos</h3>
+              <p>Contenido de la página de Permisos...</p>
+            </div>
+          `;
+          break;
+        default:
+          pageContent = `
+            <div class="box">
+              <h3>Error</h3>
+              <p>Página no encontrada.</p>
+            </div>
+          `;
+      }
+
+      contentElement.innerHTML = pageContent;
+    }
+
+    function exportToPDF() {
+      // Implementa la lógica para exportar la tabla a PDF aquí
+      console.log('Exportar tabla a PDF');
+    }
+
+    function showAddObjectForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Objeto</h3>
+          <form id="addObjectForm" onsubmit="addObject(event)">
+            <label for="objectName">Nombre del Objeto:</label>
+            <input type="text" id="objectName" name="objectName" required>
+            <label for="objectDescription">Descripción:</label>
+            <input type="text" id="objectDescription" name="objectDescription" required>
+            <label for="objectType">Tipo de Objeto:</label>
+            <input type="text" id="objectType" name="objectType" required>
+            <button type="submit">Guardar Objeto</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addObject(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo objeto aquí
+      console.log('Agregar nuevo objeto');
+    }
+  </script>
+</body>
+</html>

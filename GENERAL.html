@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novagrafic</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: hsl(0, 8%, 69%);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      width: 200px;
+      position: fixed;
+      top: 5px; /* Altura del header */
+      bottom: 0;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav li {
+      padding: 10px;
+      cursor: pointer;
+    }
+    nav li.submenu {
+      position: relative;
+    }
+    nav ul.submenu-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #222;
+      z-index: 1;
+    }
+    nav ul.submenu-content li {
+      padding: 10px;
+    }
+    nav li.submenu:hover ul.submenu-content {
+      display: block;
+    }
+    .content {
+      margin-left: 220px; /* Ancho del menú lateral + espacio */
+      padding: 20px;
+    }
+    footer {
+      background-color: hsl(0, 3%, 75%);
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    /* Estilos específicos */
+    h1 {
+      color: #000;
+    }
+    .box {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+    }
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NOVAGRAFIC</h1>
+  </header>
+  
+  <nav>
+    <ul>
+      <li onclick="loadContent('Inicio')">Inicio</li>
+      <li onclick="loadContent('Inventario')">Inventario</li>
+      <li onclick="loadContent('Cotizacion')">Cotización</li>
+      <li onclick="loadContent('Pedido')">Pedido</li>
+      <li class="submenu">
+        Seguridad
+        <ul class="submenu-content">
+          <li onclick="loadContent('Bitacora')">Bitácora</li>
+          <li onclick="loadContent('Roles')">Roles</li>
+          <li onclick="loadContent('Objetos')">Objetos</li>
+          <li onclick="loadContent('Error')">Error</li>
+          <li onclick="loadContent('Usuarios')">Usuarios</li>
+          <li onclick="loadContent('Permisos')">Permisos</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content" id="mainContent">
+    <h2>Bienvenido a NOVAGRAFIC</h2>
+    <p>Selecciona una opción del menú para ver el contenido correspondiente.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 NOVAGRAFIC - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    function loadContent(page) {
+      const contentElement = document.getElementById('mainContent');
+      let pageContent = '';
+
+      switch (page) {
+        case 'Inicio':
+          // Contenido de la página de Inicio
+          break;
+        case 'Inventario':
+          // Contenido de la página de Inventario
+          break;
+        case 'Cotizacion':
+          // Contenido de la página de Cotización
+          break;
+        case 'Pedido':
+          // Contenido de la página de Pedido
+          break;
+        case 'Bitacora':
+          pageContent = `
+            <div class="box">
+              <h3>Bitácora</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                    <th>Descripción</th>
+                    <th>Usuario</th>
+                    <th>Objeto</th>
+                    <th>Error</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>2024-04-20</td>
+                    <td>Login</td>
+                    <td>Usuario inició sesión</td>
+                    <td>admin</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Roles':
+          pageContent = `
+            <div class="box">
+              <h3>Roles</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Rol</th>
+                    <th>Descripción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>Admin</td>
+                    <td>Administrador del sistema</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddRoleForm()">Agregar Nuevo Rol</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Objetos':
+          pageContent = `
+            <div class="box">
+              <h3>Objetos</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Objeto</th>
+                    <th>Descripción</th>
+                    <th>Tipo de Objeto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>Impresora</td>
+                    <td>Impresora láser multifunción</td>
+                    <td>Hardware</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddObjectForm()">Agregar Nuevo Objeto</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Error':
+          pageContent = `
+            <div class="box">
+              <h3>Error</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Error</th>
+                    <th>Código</th>
+                    <th>Mensaje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>Error de autenticación</td>
+                    <td>101</td>
+                    <td>Fallo al autenticar el usuario</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddErrorForm()">Agregar Nuevo Error</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Usuarios':
+          pageContent = `
+            <div class="box">
+              <h3>Usuarios</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Correo Electrónico</th>
+                    <th>Primer Ingreso</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Rol</th>
+                    <th>Estado Usuario</th>
+                    <th>Área de Trabajo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>admin</td>
+                    <td>****</td>
+                    <td>admin@example.com</td>
+                    <td>2024-01-01</td>
+                    <td>2025-01-01</td>
+                    <td>Admin</td>
+                    <td>Activo</td>
+                    <td>Administración</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddUserForm()">Agregar Nuevo Usuario</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        case 'Permisos':
+          pageContent = `
+            <div class="box">
+              <h3>Permisos</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Permiso</th>
+                    <th>Permiso Inserción</th>
+                    <th>Permiso Eliminación</th>
+                    <th>Permiso Actualización</th>
+                    <th>Permiso Consultar</th>
+                    <th>Rol</th>
+                    <th>Objeto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Aquí puedes agregar filas según necesites -->
+                  <tr>
+                    <td>1</td>
+                    <td>Administrar Usuarios</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>&#10003;</td>
+                    <td>Admin</td>
+                    <td>Usuarios</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button onclick="showAddPermissionForm()">Agregar Nuevo Permiso</button>
+              <button onclick="exportToPDF()">Exportar a PDF</button>
+            </div>
+          `;
+          break;
+        default:
+          pageContent = `
+            <div class="box">
+              <h3>Error</h3>
+              <p>Página no encontrada.</p>
+            </div>
+          `;
+      }
+
+      contentElement.innerHTML = pageContent;
+    }
+
+    function exportToPDF() {
+      // Implementa la lógica para exportar la tabla a PDF aquí
+      console.log('Exportar tabla a PDF');
+    }
+
+    function showAddRoleForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Rol</h3>
+          <form id="addRoleForm" onsubmit="addRole(event)">
+            <label for="roleName">Nombre del Rol:</label>
+            <input type="text" id="roleName" name="roleName" required>
+            <label for="roleDescription">Descripción:</label>
+            <input type="text" id="roleDescription" name="roleDescription" required>
+            <button type="submit">Guardar Rol</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addRole(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo rol aquí
+      console.log('Agregar nuevo rol');
+    }
+
+    function showAddObjectForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Objeto</h3>
+          <form id="addObjectForm" onsubmit="addObject(event)">
+            <label for="objectName">Nombre del Objeto:</label>
+            <input type="text" id="objectName" name="objectName" required>
+            <label for="objectDescription">Descripción:</label>
+            <input type="text" id="objectDescription" name="objectDescription" required>
+            <label for="objectType">Tipo de Objeto:</label>
+            <select id="objectType" name="objectType" required>
+              <option value="Hardware">Hardware</option>
+              <option value="Software">Software</option>
+            </select>
+            <button type="submit">Guardar Objeto</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addObject(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo objeto aquí
+      console.log('Agregar nuevo objeto');
+    }
+
+    function showAddErrorForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Error</h3>
+          <form id="addErrorForm" onsubmit="addError(event)">
+            <label for="errorName">Nombre del Error:</label>
+            <input type="text" id="errorName" name="errorName" required>
+            <label for="errorCode">Código:</label>
+            <input type="text" id="errorCode" name="errorCode" required>
+            <label for="errorMessage">Mensaje:</label>
+            <input type="text" id="errorMessage" name="errorMessage" required>
+            <button type="submit">Guardar Error</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addError(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo error aquí
+      console.log('Agregar nuevo error');
+    }
+
+    function showAddUserForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Usuario</h3>
+          <form id="addUserForm" onsubmit="addUser(event)">
+            <!-- Agrega aquí los campos necesarios -->
+            <button type="submit">Guardar Usuario</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addUser(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo usuario aquí
+      console.log('Agregar nuevo usuario');
+    }
+
+    function showAddPermissionForm() {
+      const contentElement = document.getElementById('mainContent');
+      const formContent = `
+        <div class="box">
+          <h3>Agregar Nuevo Permiso</h3>
+          <form id="addPermissionForm" onsubmit="addPermission(event)">
+            <!-- Agrega aquí los campos necesarios -->
+            <button type="submit">Guardar Permiso</button>
+          </form>
+        </div>
+      `;
+      contentElement.innerHTML = formContent;
+    }
+
+    function addPermission(event) {
+      event.preventDefault();
+      // Implementa la lógica para agregar un nuevo permiso aquí
+      console.log('Agregar nuevo permiso');
+    }
+    /*Prueba*/
+  </script>
+</body>
+</html>

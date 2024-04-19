@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador de Usuarios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #000;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      background-color: #333;
+      color: #fff;
+    }
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Administrador de Usuarios</h1>
+  
+  <!-- Tabla de Usuarios -->
+  <table>
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Contraseña</th>
+        <th>Fecha de Creación</th>
+        <th>Último Inicio de Sesión</th>
+        <th>Roles</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="userTableBody">
+      <!-- Aquí se cargarán dinámicamente los usuarios -->
+    </tbody>
+  </table>
+
+  <!-- Botones -->
+  <div>
+    <button onclick="addUser()">Agregar Usuario</button>
+  </div>
+
+  <!-- Script para manejar acciones -->
+  <script>
+    function addUser() {
+      // Aquí puedes implementar la lógica para agregar un nuevo usuario
+      console.log('Agregar nuevo usuario');
+    }
+
+    function editUser(userId) {
+      // Aquí puedes implementar la lógica para editar un usuario
+      console.log('Editar usuario:', userId);
+    }
+
+    function deleteUser(userId) {
+      // Aquí puedes implementar la lógica para eliminar un usuario
+      console.log('Eliminar usuario:', userId);
+    }
+
+    // Simulación de carga de usuarios (puedes reemplazar con datos reales)
+    const users = [
+      { id: 1, username: 'usuario1', password: '****', createdAt: '2024-04-01', lastLogin: '2024-04-10', roles: 'Admin' },
+      { id: 2, username: 'usuario2', password: '****', createdAt: '2024-04-02', lastLogin: '2024-04-11', roles: 'User' },
+      { id: 3, username: 'usuario3', password: '****', createdAt: '2024-04-03', lastLogin: '2024-04-12', roles: 'User' },
+    ];
+
+    const userTableBody = document.getElementById('userTableBody');
+    users.forEach(user => {
+      const row = `
+        <tr>
+          <td>${user.username}</td>
+          <td>${user.password}</td>
+          <td>${user.createdAt}</td>
+          <td>${user.lastLogin}</td>
+          <td>${user.roles}</td>
+          <td>
+            <button onclick="editUser(${user.id})">Editar</button>
+            <button onclick="deleteUser(${user.id})">Eliminar</button>
+          </td>
+        </tr>
+      `;
+      userTableBody.innerHTML += row;
+    });
+  </script>
+</body>
+</html>
